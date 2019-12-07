@@ -1,11 +1,19 @@
 import React from 'react';
-import  { View, Text, TextInput, StyleSheet, Button, TouchableOpacity, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
+import FingerPrint from '../components/FingerPrint';
 import * as firebase from 'firebase';
 
 import * as Facebook from 'expo-facebook';
 
 import * as Google from 'expo-google-app-auth';
-
 
 //ROB - RELATED TO CHANGE IN MODULES BELOW
 /*
@@ -18,18 +26,14 @@ import * as GoogleSignIn from 'expo-google-sign-in';
 
 */
 
-
-
-
 export default class LoginScreen extends React.Component {
-  state={
+  state = {
     email: '',
     password: '',
     errorMessage: null
     //Rob - Change in modules code below
     //user: null
-  }
-
+  };
 
   //ROB - RELATES TO CHANGE IN EXPO MODULES CODE BELOW
   /*
@@ -80,68 +84,65 @@ export default class LoginScreen extends React.Component {
 
 */
 
-//ROB NOTE - THE BELOW SIGN IN WORKS BETTER THAN THE CHANGES I TRIED TO MAKE TO GOOGLE LOGIN BUT IS DEPRECATED AND GIVES WARNINGS
-signInWithGoogleAsync = async () => {
-  try {
-    const result = await Google.logInAsync({
-      //androidClientId: YOUR_CLIENT_ID_HERE,
-      behavior: 'web',
-      iosClientId:
-      ''
-      ,
-      scopes: ['profile', 'email'],
-    });
+  //ROB NOTE - THE BELOW SIGN IN WORKS BETTER THAN THE CHANGES I TRIED TO MAKE TO GOOGLE LOGIN BUT IS DEPRECATED AND GIVES WARNINGS
+  signInWithGoogleAsync = async () => {
+    try {
+      const result = await Google.logInAsync({
+        //androidClientId: YOUR_CLIENT_ID_HERE,
+        behavior: 'web',
+        iosClientId: 'SECRET',
+        scopes: ['profile', 'email']
+      });
 
-    if (result.type === 'success') {
-      return result.accessToken;
-    } else {
-      return { cancelled: true };
+      if (result.type === 'success') {
+        return result.accessToken;
+      } else {
+        return { cancelled: true };
+      }
+    } catch (e) {
+      return { error: true };
     }
-  } catch (e) {
-    return { error: true };
-  }
-}
-
-
+  };
 
   handleLogin = () => {
     const { email, password } = this.state;
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(error => this.setState({ errorMessage: error.message}))
-  }
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(error => this.setState({ errorMessage: error.message }));
+  };
 
+  loginWithFacebook = async () => {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions
+      } = await Facebook.logInWithReadPermissionsAsync('443898396314593', {
+        permissions: ['email', 'public_profile']
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`
+        );
+        Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
 
- loginWithFacebook = async() => {
-  try {
-    const {
-      type,
-      token,
-      expires,
-      permissions,
-      declinedPermissions,
-    } = await Facebook.logInWithReadPermissionsAsync('443898396314593', {
-      permissions: ['email','public_profile'],
-    });
-    if (type === 'success') {
-      // Get the user's name using Facebook's Graph API
-      const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-
-      //*****ROB NOTE - NEED TO FIX THE BELOW TO LOGIN OR REGISTER
-      //NEED TO LOGIN OR REGISTER
-      //auth.signInWithCrediential(response)
-    } else {
-      // type === 'cancel'
+        //*****ROB NOTE - NEED TO FIX THE BELOW TO LOGIN OR REGISTER
+        //NEED TO LOGIN OR REGISTER
+        //auth.signInWithCrediential(response)
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
     }
-  } catch ({ message }) {
-    alert(`Facebook Login Error: ${message}`);
-  }
-}
+  };
 
-
-
-  render(){
+  render() {
     return (
       <View style={styles.container}>
         <Text>Welcome to SparkUpYourLife!</Text>
@@ -150,77 +151,74 @@ signInWithGoogleAsync = async () => {
           {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
         </View>
         <View style={styles.forms}>
-           <View style={{marginTop: 30}}>
-              <Text style={styles.inputTitle}>Email Address</Text>
-              <TextInput
-               style={styles.input}
-               autoCapitalize='none'
-               onChangeText={ email => this.setState({ email })}
-               value={ this.state.email }
-              ></TextInput>
-           </View>
-           <View style={{marginTop: 30}}>
-             <Text style={styles.inputTitle}>Password</Text>
-             <TextInput
+          <View style={{ marginTop: 30 }}>
+            <Text style={styles.inputTitle}>Email Address</Text>
+            <TextInput
               style={styles.input}
-              autoCapitalize='none'
+              autoCapitalize="none"
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+            ></TextInput>
+          </View>
+          <View style={{ marginTop: 30 }}>
+            <Text style={styles.inputTitle}>Password</Text>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
               secureTextEntry
-              onChangeText={ password =>  this.setState({ password })}
+              onChangeText={password => this.setState({ password })}
               value={this.state.password}
-             ></TextInput>
-           </View>
+            ></TextInput>
+          </View>
         </View>
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-          <Text style={{color: 'white'}}>Login</Text>
+          <Text style={{ color: 'white' }}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={ () => this.props.navigation.navigate("Register")}
+          onPress={() => this.props.navigation.navigate('Register')}
         >
           <Text>
-            New to SparkUpYourLife? <Text style={{fontWeight: '500'}}>Register</Text>
+            New to SparkUpYourLife?{' '}
+            <Text style={{ fontWeight: '500' }}>Register</Text>
           </Text>
         </TouchableOpacity>
 
-
         <View>
-        <Text> --------- </Text>
-        <Text> Login using Facebook below:</Text>
-        <TouchableOpacity
-                  onPress={()=> this.loginWithFacebook()}
-                  style={styles.button}>
-                    <Text style={{color: 'white'}}> Login With Facebook </Text>
-           </TouchableOpacity>
+          <Text> --------- </Text>
+          <Text> Login using Facebook below:</Text>
+          <TouchableOpacity
+            onPress={() => this.loginWithFacebook()}
+            style={{ backgroundColor: 'blue', padding: 10 }}
+          >
+            <Text style={{ color: 'white' }}> Login With Facebook </Text>
+          </TouchableOpacity>
 
-           <TouchableOpacity
-                  onPress={()=> this.signInWithGoogleAsync()}
-                  style={{backgroundColor: 'white'}}>
-                    <Text style={{color: 'blue'}}> Sign In With Google </Text>
-           </TouchableOpacity>
-
+          <TouchableOpacity
+            onPress={() => this.signInWithGoogleAsync()}
+            style={{ backgroundColor: 'white', padding: 10 }}
+          >
+            <Text style={{ color: 'blue' }}> Sign In With Google </Text>
+          </TouchableOpacity>
+          <FingerPrint />
+        </View>
       </View>
-
-
-      </View>
-    )
+    );
   }
-
 }
 
-
-
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1
   },
-  inputTitle:{
-    color:'gray',
+  inputTitle: {
+    color: 'gray',
     fontSize: 10
   },
-  form:{
+  form: {
     marginBottom: 48,
     marginHorizontal: 30
   },
-  input:{
+  input: {
     borderBottomColor: 'blue',
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
@@ -235,4 +233,4 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 20
   }
-})
+});
