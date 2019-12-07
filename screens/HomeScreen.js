@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
@@ -48,13 +49,8 @@ export default class HomeScreen extends React.Component{
 
           <View style={styles.getStartedContainer}>
             <DevelopmentModeNotice />
-            <Text> Welcome {this.state.email}!</Text>
-            <Text style={styles.getStartedText}>Get started by opening</Text>
+            <Text style={styles.getStartedText}> Welcome {this.state.email}!</Text>
 
-            <View
-              style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText>screens/HomeScreen.js</MonoText>
-            </View>
 
             <Text style={styles.getStartedText}>
               I am changing this text because i want to see a change. Lets see if it works now
@@ -70,11 +66,15 @@ export default class HomeScreen extends React.Component{
             </TouchableOpacity>
           </View>
 
-          <View>
-            <TouchableOpacity onPress={this.logoutUser}>
-              <Text> Log out!</Text>
-            </TouchableOpacity>
+          <View style={styles.logoutContainer}>
+            <Button
+              onPress={this.logoutUser}
+              title='Log out!'
+            >
+
+            </Button>
           </View>
+
 
         </ScrollView>
 
@@ -220,5 +220,9 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  logoutContainer: {
+    marginTop: 15,
+    alignItems: 'center',
   },
 });
