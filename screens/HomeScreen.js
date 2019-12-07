@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component{
             <DevelopmentModeNotice />
             <Text style={styles.getStartedText}> Welcome {this.state.email}!</Text>
 
-            <Text>Please make sure that you keep your profile up to date!</Text>
+            <Text>Please make sure that you keep your profile up to date! Please!</Text>
 
             <Text style={styles.getStartedText}>
               I am changing this text because i want to see a change. Lets see if it works now
