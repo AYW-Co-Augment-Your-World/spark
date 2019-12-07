@@ -29,7 +29,7 @@ const firebaseConfig = {
 
 //Rob Settings
 // const firebaseConfig = {
-//   apiKey: "AIzaSyClsa65AFI6N6usb5Oq_BS41RmHq4ICXQE",
+//   apiKey: FIREBASE_API_KEY,
 //   authDomain: "aywspark.firebaseapp.com",
 //   databaseURL: "https://aywspark.firebaseio.com",
 //   projectId: "aywspark",

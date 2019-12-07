@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'dodgerblue',
-    fontSize: 30
+    fontSize: 30,
+    textAlign: 'center'
   }
 })
