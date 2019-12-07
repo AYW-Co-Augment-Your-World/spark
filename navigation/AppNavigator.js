@@ -9,14 +9,14 @@ import LoginScreen from '../screens/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
-
+import  { FIREBASE_API_KEY } from 'react-native-dotenv'
 
 //put in the config stuff here
 
 //Dominique Settings
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBDgO4-__VMSSLUM_61o-f1evii7u-df9s",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "spark-charlie.firebaseapp.com",
   databaseURL: "https://spark-charlie.firebaseio.com",
   projectId: "spark-charlie",
