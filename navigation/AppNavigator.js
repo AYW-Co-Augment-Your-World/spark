@@ -9,14 +9,14 @@ import LoginScreen from '../screens/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
-import  { FIREBASE_API_KEY } from 'react-native-dotenv'
+import  { FIREBASE_KEY } from 'react-native-dotenv'
 
 //put in the config stuff here
 
 //Dominique Settings
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
+  apiKey: FIREBASE_KEY,
   authDomain: "spark-ayw.firebaseapp.com",
   databaseURL: "https://spark-ayw.firebaseio.com",
   projectId: "spark-ayw",
@@ -27,16 +27,16 @@ const firebaseConfig = {
 };
 
 
-//Rob Settings
-// const firebaseConfig = {
+//dom's  Settings 2
+// var firebaseConfig = {
 //   apiKey: FIREBASE_API_KEY,
-//   authDomain: "aywspark.firebaseapp.com",
-//   databaseURL: "https://aywspark.firebaseio.com",
-//   projectId: "aywspark",
-//   storageBucket: "aywspark.appspot.com",
-//   messagingSenderId: "949736465328",
-//   appId: "1:949736465328:web:3a0a2c76f73763b571ac75",
-//   measurementId: "G-JLPJ32MJWJ"
+//   authDomain: "ayw-spark.firebaseapp.com",
+//   databaseURL: "https://ayw-spark.firebaseio.com",
+//   projectId: "ayw-spark",
+//   storageBucket: "ayw-spark.appspot.com",
+//   messagingSenderId: "795889190662",
+//   appId: "1:795889190662:web:22d03de6896db2ca52c087",
+//   measurementId: "G-LGB8F603HW"
 // };
 
 
