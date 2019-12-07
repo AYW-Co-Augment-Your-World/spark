@@ -17,13 +17,13 @@ import  { FIREBASE_API_KEY } from 'react-native-dotenv'
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
-  authDomain: "spark-charlie.firebaseapp.com",
-  databaseURL: "https://spark-charlie.firebaseio.com",
-  projectId: "spark-charlie",
-  storageBucket: "spark-charlie.appspot.com",
-  messagingSenderId: "293828812888",
-  appId: "1:293828812888:web:03565edf697b4695496a2d",
-  measurementId: "G-ETD6MYYBKW"
+  authDomain: "spark-ayw.firebaseapp.com",
+  databaseURL: "https://spark-ayw.firebaseio.com",
+  projectId: "spark-ayw",
+  storageBucket: "spark-ayw.appspot.com",
+  messagingSenderId: "84494988286",
+  appId: "1:84494988286:web:ebc6b8b3630399bfc486af",
+  measurementId: "G-R1V75EYLTS"
 };
 
 

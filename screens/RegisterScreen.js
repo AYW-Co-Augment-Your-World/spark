@@ -26,7 +26,13 @@ export default class RegisterScreen extends React.Component {
 
     firebase.firestore().collection("users").doc(email).set({
       name: name,
-      email: email
+      email: email,
+      bio: ' ',
+    jobTitle: ' ',
+    interests: [],
+    skills: [],
+    location: ' ',
+    photo: ' ',
     })
     .then(function(){
       console.log("Document created!")

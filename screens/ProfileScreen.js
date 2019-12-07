@@ -19,8 +19,6 @@ export default class ProfileScreen extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       // console.log('user', user)
       // this.setState({email: user.email})
-
-      let person = {};
       const profile = firebase.firestore().collection('users').doc(user.email)
 
       profile.get()
@@ -43,8 +41,6 @@ export default class ProfileScreen extends React.Component {
         .catch(function(error) {
         console.log("Error getting document:", error);
         });
-
-        console.log('person', person)
     })
   }
   render(){

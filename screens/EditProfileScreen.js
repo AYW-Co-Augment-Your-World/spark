@@ -11,14 +11,14 @@ export default class EditProfileScreen extends React.Component {
     saved: '',
     name: '',
     email: '',
-    bio: '',
-    jobTitle: '',
+    bio: ' ',
+    jobTitle: ' ',
     interests: ['flying'],
-    currentInterest:'',
-    skills: [],
-    currentSkill: '',
-    location: '',
-    photo: '',
+    currentInterest:' ',
+    skills: ['JavaScript'],
+    currentSkill: ' ',
+    location: ' ',
+    photo: ' ',
 
   }
 
@@ -59,7 +59,7 @@ export default class EditProfileScreen extends React.Component {
 
   }
   saveProfileInfo = () => {
-    firebase.firestore().collection('users').doc(this.state.email).update({
+    firebase.firestore().collection("users").doc(this.state.email).update({
       "name": this.state.name,
       "bio": this.state.bio,
       "jobTitle": this.state.jobTitle,
