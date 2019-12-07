@@ -1,66 +1,48 @@
 # Spark
 
-One Paragraph of project description goes here
+AYW Spark App is an Augumented Reality app that is changing the way people network and connect at conferences and events. By utilizing AR, users are able to view profiles of businesses and other attendees. Event organizers are also able to create more engaging and interactive events.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get started, clone and download the repo, install dependencies and run on your local machine or on your iOS device using the expo app. 
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+Apple Xcode SDK
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
 
 ```
-Give the example
+Install Apple Xcode SDK
+Clone and download repo
+Install Expo App on iOS device (Optional)
 ```
-
-And repeat
-
+Install dependencies > npm install
+Start project > npm start
 ```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+Run iOS emulator by pressing 'i' once expo has started
+OR
+Scan Expo QR code with camera on iOS device to run on device instead of emulator
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+See above steps for deployment instructions
 
 ## Built With
 
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Maven](https://maven.apache.org/) - Dependency Management
-- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+- [React Native] (https://facebook.github.io/react-native/) 
+- [Expo] - (https://expo.io/)
+- [AR Kit] - (https://docs.expo.io/versions/latest/sdk/AR/)
+- [Firebase] - (https://firebase.google.com/)
+- [Kitten UI] - (https://akveo.github.io/react-native-ui-kitten/)
 
 ## Contributing
 
@@ -89,3 +71,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Jonathan Mann
 - Matt Clark
 - Thomas Weidner
+
+
+##Tests
+
+### Running the tests
+
+Test instructions to be added in future version
