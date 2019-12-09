@@ -14,9 +14,9 @@ export default class EditProfileScreen extends React.Component {
     bio: ' ',
     jobTitle: ' ',
     interests: ['flying'],
-    currentInterest:' ',
+    currentInterest:'',
     skills: ['JavaScript'],
-    currentSkill: ' ',
+    currentSkill: '',
     location: ' ',
     photo: ' ',
     user: {}
@@ -131,17 +131,21 @@ export default class EditProfileScreen extends React.Component {
             renderItem={({item}) =>
             <View>
               <Text>{item}</Text>
-              <Button
-              onPress={()=> {
-                console.log('item', item)
-              }}
-              title='Remove Interest'/>
+              <TouchableOpacity
+                onPress={()=> {
+                  console.log('item', item)
+                  this.setState({ interests: this.state.interests.filter( interest => interest !== item)})
+                }}
+              >
+                <Text style={{color:'red'}}>Remove Interest</Text>
+              </TouchableOpacity>
 
               </View>}
           />
           <TextInput
             autoCapitalize='none'
             placeholder='Add Interest...'
+            value={this.state.currentInterest}
             onChangeText={ interest => this.setState({currentInterest: interest})}
           ></TextInput>
           <Button
@@ -160,17 +164,21 @@ export default class EditProfileScreen extends React.Component {
             renderItem={({item}) =>
             <View>
               <Text>{item}</Text>
-              <Button
-              onPress={()=> {
-                console.log('item', item)
-              }}
-              title='Remove Skill'/>
+              <TouchableOpacity
+                onPress={()=> {
+                  console.log('item', item)
+                  this.setState({ skills: this.state.skills.filter( skill => skill !== item)})
+                }}
+              >
+                <Text style={{color:'red'}}>Remove Skill</Text>
+              </TouchableOpacity>
 
               </View>}
           />
           <TextInput
             autoCapitalize='none'
             placeholder='Add Skill...'
+            value={this.state.currentSkill}
             onChangeText={ skill => this.setState({ currentSkill: skill})}
           ></TextInput>
           <Button
@@ -178,8 +186,7 @@ export default class EditProfileScreen extends React.Component {
             onPress={()=> {
               this.state.skills.push(this.state.currentSkill)
               this.setState({ currentSkill: ''})
-            }
-            }
+            }}
           />
         </View>
 
