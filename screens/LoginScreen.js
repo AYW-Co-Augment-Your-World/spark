@@ -199,7 +199,9 @@ export default class LoginScreen extends React.Component {
           >
             <Text style={{ color: 'blue' }}> Sign In With Google </Text>
           </TouchableOpacity>
-          <FingerPrint />
+          <View>
+            <FingerPrint />
+          </View>
         </View>
       </View>
     );

@@ -21,8 +21,7 @@ export default class ProfileScreen extends React.Component {
       // this.setState({email: user.email})
       const profile = firebase.firestore().collection('users').doc(user.email)
 
-      profile.get()
-        .then(doc => {
+      profile.onSnapshot(doc => {
           if (doc && doc.exists) {
               console.log("Document data:", doc.data());
               const user = doc.data()

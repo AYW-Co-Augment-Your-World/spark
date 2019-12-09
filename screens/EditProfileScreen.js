@@ -19,7 +19,7 @@ export default class EditProfileScreen extends React.Component {
     currentSkill: ' ',
     location: ' ',
     photo: ' ',
-
+    user: {}
   }
 
   componentDidMount(){
@@ -45,6 +45,7 @@ export default class EditProfileScreen extends React.Component {
               this.setState({ location: user.location})
               this.setState({ skills: user.skills})
               this.setState({ interests: user.interests})
+              this.setState({ user: user})
           } else {
               // doc.data() will be undefined in this case
               console.log("No such document!");
@@ -71,6 +72,7 @@ export default class EditProfileScreen extends React.Component {
     console.log('Saved!')
     this.setState({currentInterest: ''})
     this.setState({currentSkill: ''})
+    this.props.navigation.navigate("Profile")
 
   }
 
@@ -169,7 +171,7 @@ export default class EditProfileScreen extends React.Component {
         </TouchableOpacity>
         <View>
           <Text>{this.state.saved}</Text>
-          <Text>{this.state.saved ? this.state.name : ''}</Text>
+          <Text>{this.state.saved ? `:${this.state.name}:` : ''}</Text>
           <Text>{this.state.saved ? this.state.email : ''}</Text>
           <Text>{this.state.saved ? this.state.bio : ''}</Text>
           <Text>{this.state.saved ? this.state.interests : ''}</Text>
