@@ -46,45 +46,25 @@ export default class HomeScreen extends React.Component{
               style={styles.welcomeImage}
             />
           </View>
-
           <View style={styles.getStartedContainer}>
             <DevelopmentModeNotice />
             <Text style={styles.getStartedText}> Welcome {this.state.email}!</Text>
-
-            <Text>Please make sure that you keep your profile up to date! Please!</Text>
-            <Text>Please make sure that you keep your profile up to date! Please!</Text>
-
             <Text style={styles.getStartedText}>
-              I am changing this text because i want to see a change. Lets see if it works now
-
+             What do we want on the home page?
             </Text>
           </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
-          </View>
-
           <View style={styles.logoutContainer}>
             <Button
               onPress={this.logoutUser}
               title='Log out!'
             >
-
             </Button>
           </View>
-
-
         </ScrollView>
-
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>
             This is a tab bar. You can edit it in:
           </Text>
-
           <View
             style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>

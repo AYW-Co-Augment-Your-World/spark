@@ -141,11 +141,11 @@ export default class EditProfileScreen extends React.Component {
           />
           <TextInput
             autoCapitalize='none'
+            placeholder='Add Interest...'
             onChangeText={ interest => this.setState({currentInterest: interest})}
           ></TextInput>
           <Button
             title='Add interest '
-            placeholder='Add Interest'
             onPress={()=> {
               this.state.interests.push(this.state.currentInterest)
               this.setState({currentInterest: ''})
@@ -175,7 +175,11 @@ export default class EditProfileScreen extends React.Component {
           ></TextInput>
           <Button
             title='Add Skill'
-            onPress={()=> this.state.skills.push(this.state.currentSkill)}
+            onPress={()=> {
+              this.state.skills.push(this.state.currentSkill)
+              this.setState({ currentSkill: ''})
+            }
+            }
           />
         </View>
 
