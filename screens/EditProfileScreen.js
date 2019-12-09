@@ -33,8 +33,7 @@ export default class EditProfileScreen extends React.Component {
 
       const profile = firebase.firestore().collection('users').doc(user.email)
 
-      profile.get()
-        .then(doc => {
+      profile.onSnapshot(doc => {
           if (doc && doc.exists) {
               console.log("Document data:", doc.data());
               const user = doc.data()
@@ -86,7 +85,7 @@ export default class EditProfileScreen extends React.Component {
           <Text>Functionaliy coming soon ...</Text>
         </View>
         <View>
-          <Text>Name:</Text>
+          <Text style={styles.subTitle}>Name:</Text>
           <TextInput
             autoCapitalize='none'
             placeholder={this.state.name}
@@ -102,7 +101,7 @@ export default class EditProfileScreen extends React.Component {
           ></TextInput>
         </View> */}
         <View>
-          <Text>Bio:</Text>
+          <Text style={styles.subTitle}>Bio:</Text>
           <TextInput
             autoCapitalize='none'
             placeholder={this.state.bio}
@@ -110,7 +109,7 @@ export default class EditProfileScreen extends React.Component {
           ></TextInput>
         </View>
         <View>
-          <Text>Location:</Text>
+          <Text style={styles.subTitle}>Location:</Text>
           <TextInput
             autoCapitalize='none'
             placeholder={this.state.location}
@@ -118,7 +117,7 @@ export default class EditProfileScreen extends React.Component {
           ></TextInput>
         </View>
         <View>
-          <Text>Job Title:</Text>
+          <Text style={styles.subTitle}>Job Title:</Text>
           <TextInput
             autoCapitalize='none'
             placeholder={this.state.jobTitle}
@@ -126,27 +125,48 @@ export default class EditProfileScreen extends React.Component {
           ></TextInput>
         </View>
         <View>
-          <Text>Interests:</Text>
+          <Text style={styles.subTitle}>Interests:</Text>
           <FlatList
             data={this.state.interests}
-            renderItem={({item}) => <Text>{item}</Text>}
+            renderItem={({item}) =>
+            <View>
+              <Text>{item}</Text>
+              <Button
+              onPress={()=> {
+                console.log('item', item)
+              }}
+              title='Remove Interest'/>
+
+              </View>}
           />
           <TextInput
             autoCapitalize='none'
-            placeholder='Add Interest...'
             onChangeText={ interest => this.setState({currentInterest: interest})}
           ></TextInput>
           <Button
             title='Add interest '
-            onPress={()=> this.state.interests.push(this.state.currentInterest)}
+            placeholder='Add Interest'
+            onPress={()=> {
+              this.state.interests.push(this.state.currentInterest)
+              this.setState({currentInterest: ''})
+            }}
           />
 
         </View>
         <View>
-          <Text>Skills:</Text>
+          <Text style={styles.subTitle}>Skills:</Text>
           <FlatList
             data={this.state.skills}
-            renderItem={({item}) => <Text>{item}</Text>}
+            renderItem={({item}) =>
+            <View>
+              <Text>{item}</Text>
+              <Button
+              onPress={()=> {
+                console.log('item', item)
+              }}
+              title='Remove Skill'/>
+
+              </View>}
           />
           <TextInput
             autoCapitalize='none'
@@ -198,5 +218,9 @@ const styles = StyleSheet.create({
     color: 'dodgerblue',
     fontSize: 30,
     textAlign: 'center'
+  },
+  subTitle:{
+    color: 'dodgerblue',
+    fontSize: 25
   }
 })

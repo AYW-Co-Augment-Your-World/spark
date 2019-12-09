@@ -51,49 +51,45 @@ export default class ProfileScreen extends React.Component {
           Here is some text until i can figure out the console.log stuff
         </Text> */}
         <View>
-          <Text>Photo:</Text>
+          <Text style={styles.subTitle}>Photo:</Text>
           <Text>Coming Soon ...</Text>
-
         </View>
         <View>
-          <Text>Name:</Text>
+          <Text style={styles.subTitle}>Name:</Text>
           <Text>{this.state.name} </Text>
-
         </View>
         <View>
-          <Text>Email:</Text>
+          <Text style={styles.subTitle}>Email:</Text>
           <Text>{this.state.email}</Text>
         </View>
         <View>
-          <Text>Bio:</Text>
+          <Text style={styles.subTitle}>Bio:</Text>
           <Text>{this.state.bio}</Text>
-
         </View>
         <View>
-          <Text>Job Title:</Text>
+          <Text style={styles.subTitle}>Location:</Text>
+          <Text> {this.state.location}</Text>
+        </View>
+        <View>
+          <Text style={styles.subTitle}>Job Title:</Text>
           <Text> {this.state.jobTitle}</Text>
         </View>
         <View>
-          <Text>Interests:</Text>
+          <Text style={styles.subTitle}>Interests:</Text>
           <FlatList
             data={this.state.interests}
             renderItem={({item}) => <Text>{item}</Text>}
           />
-
         </View>
         <View>
-          <Text>Skills:</Text>
+          <Text style={styles.subTitle}>Skills:</Text>
           <FlatList
             data={this.state.skills}
             renderItem={({item}) => <Text>{item}</Text>}
           />
 
         </View>
-        <View>
-          <Text>Location:</Text>
-          <Text> {this.state.location}</Text>
 
-        </View>
 
         <TouchableOpacity
           style={styles.button}
@@ -128,5 +124,9 @@ const styles = StyleSheet.create({
     color: 'dodgerblue',
     fontSize: 30,
     textAlign: 'center'
+  },
+  subTitle:{
+    color: 'dodgerblue',
+    fontSize: 25
   }
 });
