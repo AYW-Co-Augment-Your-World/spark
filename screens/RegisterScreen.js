@@ -1,6 +1,8 @@
 import React from 'react';
 import  { View, Text, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
+import '@firebase/firestore'
+
 
 
 export default class RegisterScreen extends React.Component {
@@ -16,11 +18,29 @@ export default class RegisterScreen extends React.Component {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(userCredentials => {
+        firebase.firestore().collection("users").doc(email).set({
+          name: name,
+          email: email,
+          bio: ' ',
+          jobTitle: ' ',
+          interests: [],
+          skills: [],
+          location: ' ',
+          photo: ' ',
+        })
+        .then(function(){
+          console.log("Document created!")
+        })
+        .catch(function(error){
+          console.error("error writing document: ", error)
+        })
         return userCredentials.user.updateProfile({
           displayName: name
         })
       })
       .catch(error => this.setState({ errorMessage: error.message}))
+
+
   }
 
   render(){
